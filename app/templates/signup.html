@@ -1,0 +1,61 @@
+{% extends "oranze.html" %}
+
+{% block content %}
+
+	<section class="contactus" id="contactid">
+		<div class="container headings text-center">
+			<h1 class="text-center font-weight-bold">Become a Member</h1>
+			<p class="text-capitalize pt-1">We are here to help and answer any questions you might have. We look forward to hearing from you</p>
+		</div>
+		<form method="POST" class="post-from" action="/signup">
+		{% csrf_token %}
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-10 offset-lg-2 offset-mg-2 offset-1">
+
+					 <div class="form-group">
+					    <input type="fname" class="form-control" placeholder="Enter your First Name" id="fname" name="fname" required autocomplete="off"> 
+					 </div>
+					 <div class="form-group">
+					    <input type="lname" class="form-control" placeholder="Enter your Last Name" id="lname" name="lname" required autocomplete="off">   
+					 </div>
+					 <div class="form-group">
+					    <input type="email" class="form-control" placeholder="Enter your Email address" id="address" name="email" required autocomplete="off">   
+					 </div>
+					 <div class="form-group">
+					    <input type="text" class="form-control" placeholder="Enter your Mobile number" id="number" name="number" required autocomplete="off">   
+					 </div>
+					 <div class="form-group">
+					    <input type="username" class="form-control" placeholder="Enter your username" id="user" name="user_name" required autocomplete="off">
+					 </div>
+
+					 <div class="form-group">
+					    <input type="password" class="form-control" placeholder="Enter password" id="pwd" name="password" required autocomplete="off">  
+					 </div>
+					 <div class="form-group">
+					    <input type="password" class="form-control" placeholder="Retype your password" id="pwd" name="repassword" required autocomplete="off">  
+					 </div>
+					  <div class="form-group form-check">
+					    <label class="form-check-label">
+					      <input class="form-check-input" type="checkbox"> Remember me
+					    </label>
+					 </div>
+
+					 <div class="d-flex justify-content-center from-button">
+					 <button type="submit" class="btn btn-primary">Submit</button>
+					 </div>
+					 <div>
+                		{% for message in messages %}
+                  			<h3> {{message}} </h3>
+                		{% endfor %}
+              		</div>
+				</div>	
+			</div>
+		</div>
+
+		</form>
+		
+	</section>
+
+	{% endblock %}
