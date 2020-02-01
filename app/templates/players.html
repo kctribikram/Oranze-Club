@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table class="table table-hover table-dark">
+	<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Number</th>
+			<th>Username</th>
+			<th>Password</th>						
+	</tr>
+{% for user in users %}
+	<tr>
+			<td>{{user.user_id}}</td>
+			{% load static %}
+			<td>{{user.fname}}</td>
+			<td>{{user.lname}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.number}}</td>
+			<td>{{user.user_name}}</td>
+			<td>{{user.password}}</td>			
+	</tr>
+{% endfor %}
+</table>
+<form method="post" action="/players" >
+	{% csrf_token %}
+	<div class="peginationbtn">
+		<button type="submit" name="prev" value="prev" id="prev">prev</button>
+		<input style="width: 40px;" type="number" name="page" value="{{page}}" id="page" />
+		<button type="submit" name="next" value="next" id="next">next</button>
+	</div>	
+
+</form>
+{% endblock content %}

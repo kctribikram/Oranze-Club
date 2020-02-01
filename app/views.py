@@ -37,17 +37,36 @@ def signup(request):
     else:
         return render(request,"signup.html")
 
+def signupadmin(request):
+    if request.method=="POST":
+        form=AdminForm(request.POST)
+        form.save()
+        return redirect('/')
+
+    form=AdminForm()
+    return render(request,"adminsignup.html",{'form':form})
 
 
 def home(request):
     return render(request,"oranze.html")
 
-
+def layout(request):
+	return render(request,'layout.html')
 	
 
 def login(request):		
 	return render(request,"login.html")	
 
+def adminlogin(request):     
+    return render(request,"adminlogin.html") 
+
+def adminsignup(request):     
+    return render(request,"adminsignup.html") 
+
+@Authenticate.valid_admin
+def admindetails(request):  
+    admindetail=Admin.objects.all()   
+    return render(request,"admindetails.html",{'admindetail':admindetail})     
 
 def entry(request):
     request.session['user_name']=request.POST['user_name']
@@ -55,6 +74,10 @@ def entry(request):
     return redirect('/booking')
 
 
+def adminentry(request):
+    request.session['username']=request.POST['username']
+    request.session['password']=request.POST['password']
+    return redirect('/')
         
 
 @Authenticate.valid_user
@@ -62,3 +85,58 @@ def booking(request):
     users=User.objects.all()
     return render(request,"booking.html",{'User':users})
 			
+@Authenticate.valid_admin
+def show(request):
+	games=Game.objects.all()
+	return render(request,"show.html",{'games':games})
+
+@Authenticate.valid_admin
+def players(request):
+    limit=4
+    page=1
+    if request.method=="POST":
+        if "next" in request.POST:
+            page=(int(request.POST['page'])+1)
+        elif "prev" in request.POST:    
+            page=(int(request.POST['page'])-1)
+        tempoffset=page-1
+        offset=tempoffset*page    
+        users=User.objects.raw("select * from user limit 4 offset %s",[offset])    
+    else:
+        users=User.objects.raw("select * from user limit 4 offset 0")  
+
+    return render(request,"players.html",{'users':users,'page':page})	
+
+def search(request):
+    games=Game.objects.filter(name__contains=request.GET['srch']).values()
+    return JsonResponse(list(games),safe=False)  	
+
+
+def create(request):
+	if request.method=="POST":
+		form=GameForm(request.POST)
+		form.save()
+		return redirect('/')
+
+	form=GameForm()
+	return render(request,"create.html",{'form':form})
+
+
+def edit(request,game_id):
+	game=Game.objects.get(game_id=game_id)
+	return render(request,"edit.html",{'game':game})
+
+def update(request,game_id):
+	game=Game.objects.get(game_id=game_id)
+	form=GameForm(request.POST,request.FILES,instance=game)
+	form.save()
+	return redirect('/')
+
+def delete(request,game_id):
+	game=Game.objects.get(game_id=game_id)
+	game.delete()
+	return redirect('/')
+
+
+
+

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="card">
+	<div class="jumbotron">	
+  <div class="card-body">
+    <a href="/adminsignup" class="btn btn-primary">Add Admin</a>
+    <input type="text" class="form-control col-md-4" id="srch" placeholder="Search here.....">
+  </div>
+  <table class="table table-hover table-dark">
+	<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Username</th>
+			<th>Password</th>
+	</tr>
+{% for admin in admindetail %}
+	<tr>
+			<td>{{admin.id}}</td>
+			{% load static %}
+			<td>{{admin.fname}}</td>
+			<td>{{admin.lname}}</td>
+			<td>{{admin.username}}</td>
+			<td>{{admin.password}}</td>
+	</tr>
+{% endfor %}
+
+{% endblock %}

@@ -1,2 +1,0 @@
-# Oranze-Club
-Final assignment
