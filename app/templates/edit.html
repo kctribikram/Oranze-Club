@@ -17,11 +17,22 @@
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control"  value="{{game.price}}" name="price" required autocomplete="off">
+
+                <select id="Package" name="package" value="{{game.package}}"  class="form-control">
+                  <option value="Package">Select Package</option>
+                  <option value="Basic">Basic</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Standard">Standard</option>
+                </select>               
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control"  value="{{game.shift}}" name="shift" required autocomplete="off">
+                    <select id="shift" name="shift" value="{{game.shift}}"  class="form-control">
+                      <option value="shift">Select Shift</option>
+                      <option value="Morning">Morning</option>
+                      <option value="Day">Day</option>
+                      <option value="Evening">Evening</option>
+                    </select>              
             </div>
 
             <div class="d-flex justify-content-center form-button">

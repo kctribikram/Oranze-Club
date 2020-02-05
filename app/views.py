@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.forms import UserForm, GameForm, AdminForm
-from app.models import User, Game, Admin
+from app.forms import UserForm, GameForm, AdminForm, BookForm
+from app.models import User, Games, Admin, Book
 from django.contrib import messages
 from django.http import HttpResponse,JsonResponse
 
@@ -66,7 +66,13 @@ def adminsignup(request):
 @Authenticate.valid_admin
 def admindetails(request):  
     admindetail=Admin.objects.all()   
-    return render(request,"admindetails.html",{'admindetail':admindetail})     
+    return render(request,"admindetails.html",{'admindetail':admindetail})  
+
+       
+@Authenticate.valid_admin
+def bookdetails(request):  
+    bookdetail=Book.objects.all()   
+    return render(request,"bookdetails.html",{'bookdetail':bookdetail}) 
 
 def entry(request):
     request.session['user_name']=request.POST['user_name']
@@ -84,10 +90,19 @@ def adminentry(request):
 def booking(request):
     users=User.objects.all()
     return render(request,"booking.html",{'User':users})
+
+def book(request):
+    if request.method=="POST":
+        form=BookForm(request.POST)
+        form.save()
+        return redirect('/home')
+
+    form=BookForm()
+    return render(request,"booking.html",{'form':form})    
 			
-@Authenticate.valid_admin
+#@Authenticate.valid_admin
 def show(request):
-	games=Game.objects.all()
+	games=Games.objects.all()
 	return render(request,"show.html",{'games':games})
 
 @Authenticate.valid_admin
@@ -108,10 +123,10 @@ def players(request):
     return render(request,"players.html",{'users':users,'page':page})	
 
 def search(request):
-    games=Game.objects.filter(name__contains=request.GET['srch']).values()
+    games=Games.objects.filter(name__contains=request.GET['srch']).values()
     return JsonResponse(list(games),safe=False)  	
 
-
+@Authenticate.valid_admin
 def create(request):
 	if request.method=="POST":
 		form=GameForm(request.POST)
@@ -121,22 +136,24 @@ def create(request):
 	form=GameForm()
 	return render(request,"create.html",{'form':form})
 
-
 def edit(request,game_id):
-	game=Game.objects.get(game_id=game_id)
+	game=Games.objects.get(game_id=game_id)
 	return render(request,"edit.html",{'game':game})
 
 def update(request,game_id):
-	game=Game.objects.get(game_id=game_id)
+	game=Games.objects.get(game_id=game_id)
 	form=GameForm(request.POST,request.FILES,instance=game)
 	form.save()
 	return redirect('/')
 
 def delete(request,game_id):
-	game=Game.objects.get(game_id=game_id)
+	game=Games.objects.get(game_id=game_id)
 	game.delete()
 	return redirect('/')
 
 
-
+def logout(request):
+    del request.session['user_name']
+    del request.session['password']
+    return redirect('/login')
 

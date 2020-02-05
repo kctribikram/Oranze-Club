@@ -1,5 +1,5 @@
 from django import forms
-from app.models import User, Game, Admin
+from app.models import User, Games, Admin, Book
 
 class UserForm(forms.ModelForm):
 	class Meta:
@@ -8,12 +8,17 @@ class UserForm(forms.ModelForm):
 
 class GameForm(forms.ModelForm):
 	class Meta:
-		model=Game
+		model=Games
 		fields='__all__'		
 
 class AdminForm(forms.ModelForm):
 	class Meta:
 		model=Admin
-		fields='__all__'		
+		fields='__all__'
+
+class BookForm(forms.ModelForm):
+	class Meta:
+		model=Book
+		fields='__all__'				
 
 				

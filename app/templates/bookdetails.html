@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <table class="table table-hover table-dark">
+	<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Game</th>
+			<th>Shift</th>
+			<th>Package</th>
+			<th>Number</th>
+			<th>Username</th>
+	</tr>
+{% for book in bookdetail %}
+	<tr>
+			<td>{{book.id}}</td>
+			{% load static %}
+			<td>{{book.fname}}</td>
+			<td>{{book.lname}}</td>
+			<td>{{book.game}}</td>
+			<td>{{book.shift}}</td>
+			<td>{{book.package}}</td>
+			<td>{{book.number}}</td>
+			<td>{{book.username}}</td>
+	</tr>
+{% endfor %}
+
+{% endblock %}

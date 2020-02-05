@@ -8,7 +8,6 @@ class Authenticate:
 	def valid_user(function):
 		def wrap(request):
 			try:
-				# User.objects.get(email=request.session['email'])
 				User.objects.get(Q(password=request.session['password']) & Q(user_name=request.session['user_name']))
 				return function (request)
 			except:
@@ -20,7 +19,6 @@ class Authenticate:
 	def valid_admin(function):
 		def wrap(request):
 			try:
-				# User.objects.get(email=request.session['email'])
 				Admin.objects.get(Q(username=request.session['username']) & Q(password=request.session['password']))
 				return function (request)
 			except:
