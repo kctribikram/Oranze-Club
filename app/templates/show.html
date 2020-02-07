@@ -38,12 +38,12 @@
 				success:function(data){
 					console.log(data);
 					$("tr").not("tr:first").remove();
-					var html="";
 					for(d of data){
+						var html="";
 						html+="<tr>";
 							html+="<td>"+d.game_id+"</td>";
 							html+="<td>"+d.name+"</td>";
-							html+="<td>"+d.price+"</td>";
+							html+="<td>"+d.package+"</td>";
 							html+="<td>"+d.shift+"</td>";
 							html+="<td><a href='/edit/"+d.game_id+"'>edit</a> | <a href='/delete/"+d.game_id+"'>delete</a> </td>";
 						html+="</tr>"

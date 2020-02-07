@@ -83,7 +83,7 @@ def entry(request):
 def adminentry(request):
     request.session['username']=request.POST['username']
     request.session['password']=request.POST['password']
-    return redirect('/')
+    return redirect('/show')
         
 
 @Authenticate.valid_user
@@ -100,7 +100,7 @@ def book(request):
     form=BookForm()
     return render(request,"booking.html",{'form':form})    
 			
-#@Authenticate.valid_admin
+@Authenticate.valid_admin
 def show(request):
 	games=Games.objects.all()
 	return render(request,"show.html",{'games':games})
@@ -156,4 +156,9 @@ def logout(request):
     del request.session['user_name']
     del request.session['password']
     return redirect('/login')
+
+def adminlogout(request):
+    del request.session['username']
+    del request.session['password']
+    return redirect('/adminlogin')    
 
