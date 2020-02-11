@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <table class="table table-hover table-dark">
+<!--   <table class="table table-hover table-dark">
 	<tr>
 			<th>ID</th>
 			<th>First Name</th>
@@ -24,6 +24,48 @@
 			<td>{{book.number}}</td>
 			<td>{{book.username}}</td>
 	</tr>
-{% endfor %}
+{% endfor %} -->
+
+
+    <section>
+      <div class="container-fluid">
+        <div class="row mb-10">
+          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <div class="row align-items-center">
+              <div class="col-xl-20 col-12 mb-4 mb-xl-0">
+                <h3 class="text-muted text-center mb-3">Booking Details</h3>
+                <table class="table table-striped bg-light text-center">
+				<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Game</th>
+						<th>Shift</th>
+						<th>Package</th>
+						<th>Number</th>
+						<th>Username</th>
+				</tr>
+				{% for book in bookdetail %}
+				<tr>
+						<td>{{book.id}}</td>
+						{% load static %}
+						<td>{{book.fname}}</td>
+						<td>{{book.lname}}</td>
+						<td>{{book.game}}</td>
+						<td>{{book.shift}}</td>
+						<td>{{book.package}}</td>
+						<td>{{book.number}}</td>
+						<td>{{book.username}}</td>
+				</tr>
+				{% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end of tables -->
+
 
 {% endblock %}

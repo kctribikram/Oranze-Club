@@ -41,5 +41,8 @@ urlpatterns = [
     path('show', views.show),    
     path('edit/<int:game_id>', views.edit),
     path('update/<int:game_id>', views.update),
-    path('delete/<int:game_id>', views.delete),   
+    path('delete/<int:game_id>', views.delete),
+    path('profile/<str:user_name>', views.profile),
+    path('editprofile/<int:user_id>', views.editprofile), 
+    path('userupdate/<int:user_id>', views.userupdate),   
 ]

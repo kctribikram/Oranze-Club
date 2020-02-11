@@ -74,6 +74,10 @@ def bookdetails(request):
     bookdetail=Book.objects.all()   
     return render(request,"bookdetails.html",{'bookdetail':bookdetail}) 
 
+def profile(request,user_name="request.session.user_name"):
+    user=User.objects.get(user_name=user_name)
+    return render(request,'profile.html',{'user':user})    
+
 def entry(request):
     request.session['user_name']=request.POST['user_name']
     request.session['password']=request.POST['password']
@@ -139,6 +143,7 @@ def create(request):
 def edit(request,game_id):
 	game=Games.objects.get(game_id=game_id)
 	return render(request,"edit.html",{'game':game})
+    
 
 def update(request,game_id):
 	game=Games.objects.get(game_id=game_id)
@@ -150,6 +155,18 @@ def delete(request,game_id):
 	game=Games.objects.get(game_id=game_id)
 	game.delete()
 	return redirect('/')
+
+
+def editprofile(request,user_id):
+    user=User.objects.get(user_id=user_id)
+    return render(request,"editprofile.html",{'user':user})
+
+
+def userupdate(request,user_id):
+    user=User.objects.get(user_id=user_id)
+    form=UserForm(request.POST,request.FILES,instance=user)
+    form.save()
+    return redirect('/booking')   
 
 
 def logout(request):
