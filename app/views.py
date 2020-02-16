@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.forms import UserForm, GameForm, AdminForm, BookForm
-from app.models import User, Games, Admin, Book
+from app.forms import UserForm, GameForm, AdminForm, BookForm, MessageForm
+from app.models import User, Games, Admin, Book, Message
 from django.contrib import messages
 from django.http import HttpResponse,JsonResponse
 
@@ -128,7 +128,15 @@ def players(request):
 
 def search(request):
     games=Games.objects.filter(name__contains=request.GET['srch']).values()
-    return JsonResponse(list(games),safe=False)  	
+    return JsonResponse(list(games),safe=False) 
+
+def booksrch(request):
+    book=Book.objects.filter(fname__contains=request.GET['search']).values()
+    return JsonResponse(list(book),safe=False) 
+
+def adminsrch(request):
+    admin=Admin.objects.filter(fname__contains=request.GET['search']).values()
+    return JsonResponse(list(admin),safe=False) 
 
 @Authenticate.valid_admin
 def create(request):
@@ -143,7 +151,10 @@ def create(request):
 def edit(request,game_id):
 	game=Games.objects.get(game_id=game_id)
 	return render(request,"edit.html",{'game':game})
-    
+
+def adminedit(request,id):
+    admin=Admin.objects.get(id=id)
+    return render(request,"adminedit.html",{'admin':admin})    
 
 def update(request,game_id):
 	game=Games.objects.get(game_id=game_id)
@@ -151,11 +162,21 @@ def update(request,game_id):
 	form.save()
 	return redirect('/')
 
+def adminupdate(request,id):
+    admin=Admin.objects.get(id=id)
+    form=AdminForm(request.POST,request.FILES,instance=admin)
+    form.save()
+    return redirect('/')   
+
 def delete(request,game_id):
 	game=Games.objects.get(game_id=game_id)
 	game.delete()
 	return redirect('/')
 
+def admindelete(request,id):
+    admin=Admin.objects.get(id=id)
+    admin.delete()
+    return redirect('/')
 
 def editprofile(request,user_id):
     user=User.objects.get(user_id=user_id)
@@ -179,3 +200,20 @@ def adminlogout(request):
     del request.session['password']
     return redirect('/adminlogin')    
 
+def message(request):
+    if request.method=="POST":
+        form=MessageForm(request.POST)
+        form.save()
+        return redirect('/home')
+
+    form=MessageForm()
+    return render(request,"home.html",{'form':form})
+
+@Authenticate.valid_admin
+def messagedetails(request):  
+    messagedetail=Message.objects.all()   
+    return render(request,"messagedetails.html",{'messagedetail':messagedetail}) 
+
+def reply(request,id):
+    reply=Message.objects.get(id=id)
+    return render(request,"reply.html",{'reply':reply})    

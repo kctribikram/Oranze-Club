@@ -64,3 +64,11 @@ class Book(models.Model):
 	username=models.CharField(max_length=30)
 	class Meta:
 		db_table="book"		
+
+class Message(models.Model):
+	id=models.AutoField(auto_created=True,primary_key=True)
+	message=models.CharField(max_length=30)
+	email=models.CharField(max_length=30)
+	class Meta:
+		db_table="message"
+

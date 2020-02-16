@@ -5,46 +5,14 @@
 <head>
 	<title>Oranze Club</title>
 	  <meta charset="utf-8">
-  		<meta name="viewport" content="width=device-width, initial-scale=1">
- 		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="{% static 'jquery/jquery.js' %}"></script>    
-  		<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
 </head>
 <body>
-	<!--------------------navbar---------------->
-<!-- <section id="nav-bar">
-	<nav class="navbar navbar-expand-lg navbar-light">
- 		 <a class="navbar-brand" href="#">Oranze</a>
-  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  			</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-    	<ul class="navbar-nav ml-auto">         
-		      <li class="nav-item active">
-		        <a class="nav-link" href="show">Game Details <span class="sr-only">(current)</span></a>
-		      </li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="players">Member Details</a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="admindetails">Admin Details</a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="bookdetails">Book Details</a>
-      			</li>
-          {% if request.session.username %}
-          <li class="nav-item">           
-            <a class="nav-link" href="adminlogout">Logout</a>               
-          </li>  
-          {% endif %}
-    	</ul>
-    </div>
-	</nav>
-</section> -->
-
-
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-light">
       <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
@@ -64,6 +32,7 @@
                 <a href="players" class="navbar-brand text-white d-block mx-auto text-center py-2 mb-2 sidebar-link"><i class="fas fa-users text-light fa-lg mr-2"></i>Player Details</a>
                 <a href="bookdetails" class="navbar-brand text-white d-block mx-auto text-center py-2 mb-2 sidebar-link"><i class="fas fa-book text-light fa-lg mr-2"></i>Booking Details</a>
                 <a href="admindetails" class="navbar-brand text-white d-block mx-auto text-center py-2 mb-2 sidebar-link"><i class="fas fa-user-cog text-light fa-lg mr-2"></i>Admin Details</a>
+                <a href="messagedetails" class="navbar-brand text-white d-block mx-auto text-center py-2 mb-2 sidebar-link"><i class="fas fa-envelope text-light fa-lg mr-2"></i>Message</a>
                 <a href="adminlogout" class="navbar-brand text-white d-block mx-auto text-center py-2 mb-2 sidebar-link"><i class="fas fa-sign-out-alt text-light fa-lg mr-2"></i>Logout</a>
                 {% endif %}
               </ul>
@@ -77,11 +46,16 @@
 {% block content %}
 
 {% endblock %}
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
-<!-- <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/counterup.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/waypoints.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
 
 </body>
 </html>

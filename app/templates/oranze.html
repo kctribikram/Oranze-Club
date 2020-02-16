@@ -10,10 +10,6 @@
   		<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
   		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
   		<link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
-  		 
-  		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
-<!-- 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/> -->
-		
 </head>
 <body>
 	<!--------------------navbar---------------->
@@ -24,7 +20,7 @@
     		<span class="navbar-toggler-icon"></span>
   			</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-    	<ul class="navbar-nav ml-auto">		      
+    	<ul class="navbar-nav ml-auto ">		      
     		<li class="nav-item active">
 		        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
 		      </li>
@@ -32,7 +28,7 @@
         			<a class="nav-link" href="#servicediv">About Us</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" href="#newsletterid">Notification</a>
+        			<a class="nav-link" href="#newsletterid">Queries</a>
       			</li>
       			<li class="nav-item">
         			<a class="nav-link" href="#footerdiv">Contact</a>
@@ -58,28 +54,28 @@
       <img src="{% static 'images/kobe.jpg' %}" class="d-block img-fluid">
 			<div class="carousel-caption text-centre">
 				<h1>Basketball</h1>
-				<p>Intelligent and intense basketball skill and strength training.These Programs are designed to help the basketball player become better in many areas of athleticism and fundamentals. Players will find these helpful, and coaches, you can share these with your players to help them become better basketball players ... which, in turn, will give you a better basketball team</p>
-				<a class="btn" href="signup">Sign Up</a>	
-				<a class="btn " href="login">Login </a>							
+				<p>Intelligent and intense basketball skill and strength training.</p>
+				<a class="btn btn-lg" href="signup">Sign Up</a>	
+				<a class="btn btn-lg" href="login">Login </a>							
     		</div>
     </div>		
     <div class="carousel-item">
       <img src="{% static 'images/boxing.jpg' %}" class="d-block img-fluid">
 			<div class="carousel-caption text-centre">
 				<h1>Boxing</h1>
-				<p>Boxing training boosts confidence, reshapes bodies, and makes people stronger, faster, and more powerful. Whether the motivation to learn is fitness, competition, or self defense, I do my best to help people reap the benefits of boxing and achieve goals.</p>
-				<a class="btn " href="signup">Sign Up</a>	
-				<a class="btn " href="login">Login </a>
+				<p>Boxing training boosts confidence, reshapes bodies, and makes people stronger, faster, and more powerful.</p>
+				<a class="btn btn-outline-ight btn-lg" href="signup">Sign Up</a>	
+				<a class="btn btn-outline-ight btn-lg " href="login">Login </a>
 			</div>					
 	</div>     
     <div class="carousel-item">
       <img src="{% static 'images/boy.jpg' %}" class="d-block img-fluid">
 			<div class="carousel-caption text-centre">
 				<h1>Football</h1>
-				<p>We offer a wide range of specific training sessions that include, team, holiday camps and private coaching to accommodate different levels of ability, all of which have been specifically designed to ensure the continual development for those with the ability and desire to progress.</p>
-				<a class="btn " href="signup">Sign Up</a>	
-				<a class="btn " href="login">Login </a>
-				</div>					
+				<p>We offer a wide range of specific training sessions that include, team, holiday camps and private coaching to accommodate different levels of ability.</p>
+				<a class="btn btn-lg" href="signup">Sign Up</a>	
+				<a class="btn btn-lg" href="login">Login </a>
+			</div>					
 	</div>
    </div>
   </div>
@@ -113,7 +109,7 @@
 				<div class=" extra-div col-lg-4 col-md-4 col-12">
 					<a href="#"><i class="fa-3x fas fa-swimmer"></i></a>
 						<h2>Swimming</h2>
-							<p>With lots of space to enjoy your own type of sports we also have indoor swimming pool for every member of the club.</p>
+						<p>With lots of space to enjoy your own type of sports we also have indoor swimming pool for every member of the club.</p>
 					
 				</div>
 				
@@ -280,7 +276,36 @@
 		</div>
 	</section>
 	{% endblock %}	
-	<!-------------pricing ends-------------->	
+	<!-------------pricing ends-------------->
+	<!-------------message starts-------------->
+	<section class="newsletter" id="newsletterid">
+  <div class="container headings text-center">
+      <h1 class="text-center font-weight-bold">Your Quiries here </h1>
+    </div>
+    <form method="POST" class="post-from" action="/message">
+    {% csrf_token %}
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-10 offset-lg-2 offset-mg-2 offset-1">
+           <div class="form-group">
+              <input type="text" class="form-control email" placeholder="Drop your messages here" id="message" name="message" required autocomplete="off"> 
+           </div>
+           <div class="form-group">
+              <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required autocomplete="off"> 
+           </div>                   
+           <div class="d-flex justify-content-center from-button">
+           <button type="submit" class="btn btn-primary">Submit</button>
+           </div>
+        </div>  
+      </div>
+    </div>
+
+    </form>
+
+	</section>							
+
+	<!-------------message ends-------------->		
 	<!-------------footer starts-------------->
 	<footer class="footersection" id="footerdiv">
 		<div class="container">
@@ -304,7 +329,7 @@
 				<div class="col-lg-4 col-md-12 col-12 footer-div">
 					<div>
 						<h3>Details</h3>
-						<p>Follow our social media for any updates by providing your email adress.</p>
+						<p>Provide your your email adress to get notified before anyone about all the updates.</p>
 						<div class="container newsletter-main">
 							<div class="row">
 								<div class="col-lg-12  col-12">
@@ -331,12 +356,6 @@
 		</div>
 	</footer>
 
-	<!--------------------navbar---------------->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --><!-- 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/counterup.min.js' %}"></script>
@@ -345,9 +364,6 @@
 <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
-
-
-
 
 <script>
 	$('.count').counterUp({
